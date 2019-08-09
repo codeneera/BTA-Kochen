@@ -4,7 +4,7 @@
 
 body {
   background-color: #fff;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Cantarell', sans-serif;
   color: #000;
   line-height: 1:4;
   margin: 0;
@@ -17,18 +17,19 @@ nav a {
   font-weight: bold;
 }
 
-#navi ul{
+#navi ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-body {
-  font-family: Helvetica, Arial, sans-serif;
-}
+
 
 #pageheader {
+  position: fixed;
+  width: 100%;
   background-color: #fff;
+  height: 60px;
 }
 
 /*wir haben im html den button mit id burgerbutton benannt und nun haben wir den hintergrund transparent und den rahmen (border) weggemacht */
@@ -36,32 +37,203 @@ body {
   background-color: transparent;
   border: none;
 }
-#navi{
-  display: none;
-}
 
+#navi {
+  display: none; /* soll auf dem kleinen gerät nicht geladen werden */
+}
 
 /* nun sagen wir dem burgerbutton mit media query, dass er ab einer bestimmt größe nicht mehr da sein soll */
-
-.wrapper{
+.wrapper {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
+  align-items: center;
+  /* unsere 4 dinge sind mehr in die mittlere höhe vom header gerutscht*/
+  height: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
+
+#navi.show {
+  /* gib mir den typ der id navi und gleichzeitig klasse show hat */
+  display: flex;
+  position: fixed;
+  top:60px;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  height: calc(100vh - 60px);
+  justify-content: center;
+  align-items: center;  /*nun haben wir die Links in die Mitte zentriert gesetzt, also wenn man auf den Button klickt, werden sie ind er mitte eines weißen bildschirms angezeigt */
+  text-align: center;
+  line-height: 5rem;
+
+
+}
+
+/* wir fügen jetzt ins neu geschriebene html ein background image ein: */
+#intro {
+  background-image: url(img/intro.jpg);
+  height: 100vh;
+  /* wir vergrößern das bild über den ganzen bildschirm vh steht dabei für viewport,und 100 steht für 100 % */
+  background-repeat: no-repeat;
+  /* bild soll sich nicht wiederholen*/
+  background-position: center;
+  /* bild in die mitte setzen */
+  background-size: cover;
+  color: white;
+  /* bild bedeckt bildschirm vollständig*/
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* jetzt rücken wir den text und den Button in die Mitte, dazu haben wir ein div um die Sachen gelegt, um sie zu gruppieren, und dieses div haben wir im html angelegt*/
+}
+
+.button {
+  background-color: white;
+  border: 1px solid #374A67;
+  padding: 10px;
+  text-transform: uppercase;
+  color: #374A67;
+  text-decoration: none;
+  /*ohne Unterstrichen */
+  font-weight: bold;
+  /* schrift fett*/
+  border-radius: 4px;
+  box-shadow: 1px 5px 6px 0px rgba(0, 0, 0, 0.75);
+  transition: all 0.3s linear;
+  /*damit Übergang softer wird*/
+  display: inline-block;
+  /* button macht sich nur so breit wie er muss und kante läuft drunter */
+}
+
+/* hover bedeutet es passiert etwas für den nutzer*/
+.button:hover {
+  color: white;
+  background-color: #374A67;
+}
+
+/*#intro h1, #intro p{
+  color: white}*/
+.card {
+  border: 1px solid #828282;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#rezepte {
+  text-align: center;
+}
+
+.card p {
+  color: #828282;
+}
+
+.buttonblue {
+  background-color: #374A67;
+  color: white;
+  display: inline-block;
+}
+
+.card img {
+  width: 100%;
+}
+
+main .wrapper {
+  display: block;
+}
+
+.newsletter {
+  background: #04122b;
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.newsletter p {
+  font-weight: bold;
+}
+
+.newsletter input {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+}
+
+#footer-nav ul, #social ul {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+footer .wrapper {
+  display: block;
+  padding: 3rem 0;
+}
+
+footer nav a {
+  text-transform: none;
+  margin-right: 1rem;
+  font-weight: normal;
+}
+
+#social {
+  font-size: 2rem;
+}
+
+#social a:hover {
+  color: #828282;
+}
+
+#social ul {
+  display: flex;
+  justify-content: center;
+}
+
+.overflow{
+  overflow:hidden;
+}
+/* alles was drüber hinausgeht verbergen -> scrollen nicht mehr möglich */
+
 
 @media (min-width: 960px) {
-  #burgerbutton{
+  #burgerbutton {
     display: none;
-  }
+    }
 
-  #navi{
+  #navi {
     display: block;
   }
-#navi ul{
-  display: flex;
-}
 
-#navi ul li{
-  margin-left: 10px;
-  margin-right: 20px;
-}
+  #navi ul {
+    display: flex;
+  }
+
+  #navi ul li {
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  .card {
+    float: left;
+    width: calc(33.33333% - 16px);
+    /*soll ausrechnen, achtung leerzeichen nicht vergessen)*/
+    margin: 8px;
+  }
+
+  /* hack von Markus: elemt dirket ins css einfügen after(Danach) um zu clearen*/
+  .row::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .wrapper {
+    width: 90%;
+    margin: auto;
+  }
+
+  #footer-nav ul, #social ul, footer .wrapper {
+    display: flex;
+  }
 }
